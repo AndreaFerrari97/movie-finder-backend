@@ -1,0 +1,37 @@
+service: film-service
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  getAllMovies:
+    handler: dist/functions/handler.getAllMovies
+    events:
+      - http:
+          path: /movies
+          method: GET
+  getAllDistributors:
+    handler: dist/functions/handler.getAllDistributors
+    events:
+      - http:
+          path: /distributors
+          method: GET
+  getAllMpaaRatings:
+    handler: dist/functions/handler.getAllMpaaRatings
+    events:
+      - http:
+          path: /mpaa-ratings
+          method: GET
+  getAllGenres:
+    handler: dist/functions/handler.getAllGenres
+    events:
+      - http:
+          path: /genres
+          method: GET
+
+plugins:
+  - serverless-offline
